@@ -7,9 +7,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=yes"
     />
     <title>Dry Fruits QR Order System</title>
-    <!-- QRCode.js library for generating QR codes -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <!-- Font Awesome Icons for better UI -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -31,20 +29,15 @@
         padding: 1.5rem;
       }
 
-      /* Main container for both views (QR view + Order form view) */
       .app-container {
         max-width: 1300px;
         width: 100%;
         background: #fffef7;
         border-radius: 2.5rem;
-        box-shadow:
-          0 25px 45px -12px rgba(0, 0, 0, 0.35),
-          0 2px 8px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35);
         overflow: hidden;
-        transition: all 0.2s ease;
       }
 
-      /* Header style */
       .header {
         background: #5a3e2b;
         color: #fff2e0;
@@ -54,8 +47,6 @@
 
       .header h1 {
         font-size: 1.9rem;
-        letter-spacing: -0.5px;
-        font-weight: 600;
       }
 
       .header h1 i {
@@ -63,22 +54,14 @@
         color: #f9b23f;
       }
 
-      .header p {
-        margin-top: 8px;
-        opacity: 0.85;
-        font-size: 1rem;
-      }
-
-      /* Dual panel layout */
       .two-columns {
         display: flex;
         flex-wrap: wrap;
       }
 
-      /* QR SECTION (Seller side) */
       .qr-panel {
         flex: 1;
-        min-width: 280px;
+        min-width: 300px;
         background: #fefaf0;
         padding: 2rem 1.8rem;
         border-right: 1px solid #e9e0cf;
@@ -87,24 +70,63 @@
 
       .qr-panel h2 {
         color: #4a3724;
-        font-weight: 600;
         margin-bottom: 1rem;
-        font-size: 1.7rem;
       }
 
-      .qr-panel .instruction {
-        color: #7f6b4a;
+      .url-input-group {
+        background: white;
+        padding: 1rem;
+        border-radius: 16px;
         margin-bottom: 1.5rem;
-        font-size: 0.95rem;
+        text-align: left;
+        border: 1px solid #e9e0cf;
+      }
+
+      .url-input-group label {
+        display: block;
+        font-weight: 600;
+        color: #5a3e2b;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+      }
+
+      .url-input-group input {
+        width: 100%;
+        padding: 10px 14px;
+        border: 2px solid #e9e0cf;
+        border-radius: 40px;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+
+      .url-input-group input:focus {
+        outline: none;
+        border-color: #e6a017;
+      }
+
+      .update-url-btn {
+        background: #e6a017;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 40px;
+        cursor: pointer;
+        font-weight: 600;
+        width: 100%;
+        color: white;
+        font-size: 1rem;
+      }
+
+      .update-url-btn:hover {
+        background: #ca8b12;
       }
 
       #qrcode {
         display: flex;
         justify-content: center;
         margin: 20px 0;
+        min-height: 250px;
       }
 
-      /* Style QR code container */
       #qrcode img,
       #qrcode canvas {
         border-radius: 24px;
@@ -115,18 +137,13 @@
         height: auto;
       }
 
-      .qr-url-info {
+      .current-url {
         background: #e9e2d3;
-        padding: 12px;
+        padding: 10px;
         border-radius: 40px;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         word-break: break-all;
-        margin-top: 20px;
-        color: #4d3a25;
-      }
-
-      .qr-url-info i {
-        margin-right: 6px;
+        margin: 15px 0;
       }
 
       .download-btn {
@@ -134,29 +151,25 @@
         border: none;
         color: white;
         padding: 12px 28px;
-        font-size: 1rem;
         border-radius: 40px;
-        margin-top: 22px;
+        margin-top: 10px;
         cursor: pointer;
-        transition: 0.2s;
-        font-weight: 500;
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+        font-weight: 500;
       }
 
       .download-btn:hover {
         background: #5a3e2b;
-        transform: scale(1.02);
       }
 
-      /* ORDER FORM PANEL (Buyer side simulation / also embedded web app) */
       .order-panel {
         flex: 1.4;
         min-width: 340px;
         background: white;
-        padding: 2rem 2rem;
+        padding: 2rem;
       }
 
       .order-panel h2 {
@@ -165,12 +178,6 @@
         border-left: 6px solid #e6a017;
         padding-left: 18px;
         margin-bottom: 1.5rem;
-      }
-
-      .order-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1.3rem;
       }
 
       .product-row {
@@ -182,31 +189,13 @@
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 12px;
-        border: 1px solid #f0e5d4;
-        transition: all 0.2s;
+        margin-bottom: 12px;
       }
 
       .product-info {
         display: flex;
         align-items: center;
-        gap: 14px;
-        min-width: 140px;
-      }
-
-      .product-icon {
-        font-size: 2rem;
-      }
-
-      .product-name {
-        font-weight: 700;
-        font-size: 1.2rem;
-        color: #3e2c1c;
-      }
-
-      .product-price {
-        font-size: 0.85rem;
-        color: #aa7e54;
-        font-weight: 500;
+        gap: 10px;
       }
 
       .quantity-control {
@@ -216,7 +205,7 @@
         background: white;
         padding: 5px 12px;
         border-radius: 50px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       .quantity-control button {
@@ -228,7 +217,6 @@
         border-radius: 50%;
         cursor: pointer;
         font-weight: bold;
-        color: #5a3e2b;
         transition: 0.1s;
       }
 
@@ -236,38 +224,11 @@
         background: #cfbc9f;
       }
 
-      .quantity-control span {
-        font-size: 1.2rem;
-        font-weight: 600;
-        width: 36px;
-        text-align: center;
-      }
-
-      .product-subtotal {
-        min-width: 85px;
-        text-align: right;
-        font-weight: 600;
-        color: #2c5a2e;
-        font-size: 1.05rem;
-      }
-
-      hr {
-        margin: 12px 0;
-        border-color: #ece2d2;
-      }
-
       .order-summary {
         background: #f3ede3;
         border-radius: 28px;
         padding: 1.2rem 1.8rem;
-        margin-top: 1rem;
-      }
-
-      .summary-line {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.1rem;
-        margin: 8px 0;
+        margin: 1rem 0;
       }
 
       .total-price {
@@ -283,7 +244,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
-        margin: 20px 0 10px;
+        margin: 20px 0;
       }
 
       .buyer-info input,
@@ -292,22 +253,7 @@
         padding: 12px 16px;
         border-radius: 60px;
         border: 1px solid #ddcfb8;
-        background: white;
         font-size: 0.95rem;
-        outline: none;
-        transition: 0.2s;
-      }
-
-      .buyer-info input:focus,
-      .buyer-info textarea:focus {
-        border-color: #e6a017;
-        box-shadow: 0 0 0 2px rgba(230, 160, 23, 0.2);
-      }
-
-      .buyer-info textarea {
-        border-radius: 24px;
-        resize: vertical;
-        min-width: 200px;
       }
 
       .submit-order {
@@ -317,21 +263,14 @@
         font-size: 1.1rem;
         font-weight: bold;
         border-radius: 60px;
-        color: #2c241a;
         cursor: pointer;
         width: 100%;
-        margin-top: 12px;
         transition: 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
       }
 
       .submit-order:hover {
         background: #ca8b12;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+        transform: translateY(-1px);
       }
 
       .message-area {
@@ -352,13 +291,9 @@
         color: #bc4a2c;
       }
 
-      footer {
-        text-align: center;
-        padding: 1rem;
-        font-size: 0.75rem;
-        color: #b7a77e;
-        background: #fcf9f2;
-        border-top: 1px solid #ede3d3;
+      .info-message {
+        background: #e3f2fd;
+        color: #1976d2;
       }
 
       @media (max-width: 850px) {
@@ -369,416 +304,373 @@
           border-right: none;
           border-bottom: 1px solid #e9e0cf;
         }
-        .order-panel {
-          padding: 1.8rem;
-        }
       }
     </style>
   </head>
   <body>
-    <div class="app-container" id="appRoot">
+    <div class="app-container">
       <div class="header">
         <h1><i class="fas fa-seedling"></i> Premium Dry Fruits Store</h1>
-        <p>Seller QR Code Generator • Scan to place order</p>
+        <p>Generate QR Code - Customers scan to place orders</p>
       </div>
-      <div class="order-panel" id="orderPanel">
-        <h2><i class="fas fa-shopping-basket"></i> Place Your Order</h2>
-        <div class="order-form" id="dynamicProductList">
-          <!-- Products will be injected via JS -->
+      <div class="two-columns">
+        <div class="qr-panel">
+          <h2><i class="fas fa-qrcode"></i> QR Code Generator</h2>
+
+          <div class="url-input-group">
+            <label><i class="fas fa-link"></i> QR Code Destination URL</label>
+            <input
+              type="text"
+              id="customUrlInput"
+              placeholder="https://your-website.com/order-page"
+            />
+            <button class="update-url-btn" id="updateUrlBtn">
+              <i class="fas fa-sync-alt"></i> Generate / Update QR Code
+            </button>
+            <div class="current-url">
+              <i class="fas fa-info-circle"></i>
+              <strong>Current QR points to:</strong><br />
+              <span id="urlText" style="word-break: break-all">Loading...</span>
+            </div>
+          </div>
+
+          <div id="qrcode"></div>
+
+          <button class="download-btn" id="downloadQRBtn">
+            <i class="fas fa-download"></i> Download QR Code as PNG
+          </button>
+
+          <p style="margin-top: 20px; font-size: 0.8rem; color: #a18764">
+            <i class="fas fa-lightbulb"></i> Tip: Enter any URL, click
+            "Generate", then download the QR code. Print and share with
+            customers!
+          </p>
         </div>
 
-        <div class="order-summary" id="summaryPanel">
-          <!-- summary dynamic -->
+        <div class="order-panel">
+          <h2><i class="fas fa-shopping-basket"></i> Customer Order Form</h2>
+          <div id="dynamicProductList"></div>
+          <div id="summaryPanel"></div>
+          <div class="buyer-info">
+            <input type="text" id="buyerName" placeholder="Full Name *" />
+            <input type="tel" id="buyerPhone" placeholder="Phone Number *" />
+            <textarea
+              id="buyerAddress"
+              rows="1"
+              placeholder="Delivery Address (Optional)"
+            ></textarea>
+          </div>
+          <button class="submit-order" id="submitOrderBtn">
+            <i class="fas fa-paper-plane"></i> Submit Order
+          </button>
+          <div id="formMessage" class="message-area"></div>
         </div>
-
-        <div class="buyer-info">
-          <input
-            type="text"
-            id="buyerName"
-            placeholder="Full Name *"
-            autocomplete="off"
-          />
-          <input type="tel" id="buyerPhone" placeholder="Phone Number *" />
-          <textarea
-            id="buyerAddress"
-            rows="1"
-            placeholder="Delivery Address (optional)"
-          ></textarea>
-        </div>
-        <button class="submit-order" id="submitOrderBtn">
-          <i class="fas fa-paper-plane"></i> Submit Order Request
-        </button>
-        <div id="formMessage" class="message-area"></div>
       </div>
-      <footer>
-        <i class="fas fa-lock"></i> Secure order collection • Scan QR to open
-        this exact ordering page
-      </footer>
     </div>
 
     <script>
-      // ----------------------------------------------
-      // Dry Fruits Product Catalog (seller defined)
-      // ----------------------------------------------
       const PRODUCTS = [
-        {
-          id: 1,
-          name: "Almonds (Badam)",
-          icon: "🥜",
-          price: 850,
-          unit: "kg",
-          basePrice: 850,
-        },
-        {
-          id: 2,
-          name: "Cashews (Kaju)",
-          icon: "🍬",
-          price: 950,
-          unit: "kg",
-          basePrice: 950,
-        },
-        {
-          id: 3,
-          name: "Walnuts (Akhrot)",
-          icon: "🌰",
-          price: 720,
-          unit: "kg",
-          basePrice: 720,
-        },
-        {
-          id: 4,
-          name: "Pistachios (Pista)",
-          icon: "💚",
-          price: 1250,
-          unit: "kg",
-          basePrice: 1250,
-        },
-        {
-          id: 5,
-          name: "Raisins (Kishmish)",
-          icon: "🍇",
-          price: 340,
-          unit: "kg",
-          basePrice: 340,
-        },
-        {
-          id: 6,
-          name: "Dates (Khajoor)",
-          icon: "🌴",
-          price: 490,
-          unit: "kg",
-          basePrice: 490,
-        },
-        {
-          id: 7,
-          name: "Apricots",
-          icon: "🍑",
-          price: 680,
-          unit: "kg",
-          basePrice: 680,
-        },
+        { id: 1, name: "Almonds (Badam)", icon: "🥜", price: 850 },
+        { id: 2, name: "Cashews (Kaju)", icon: "🍬", price: 950 },
+        { id: 3, name: "Walnuts (Akhrot)", icon: "🌰", price: 720 },
+        { id: 4, name: "Pistachios (Pista)", icon: "💚", price: 1250 },
+        { id: 5, name: "Raisins (Kishmish)", icon: "🍇", price: 340 },
+        { id: 6, name: "Dates (Khajoor)", icon: "🌴", price: 490 },
       ];
 
-      // State: quantities for each product (index based)
       let quantities = new Array(PRODUCTS.length).fill(0);
+      let currentQRUrl = window.location.href.split("#")[0];
 
-      // Helper: format price in INR style
-      const formatPrice = (price) => `₹${price.toFixed(2)}`;
+      // Function to generate QR code
+      function generateQRCode(url) {
+        const qrDiv = document.getElementById("qrcode");
+        if (!qrDiv) return;
 
-      // Update the UI: product list, summary, total
-      function renderOrderForm() {
+        // Clear previous QR code
+        qrDiv.innerHTML = "";
+
+        try {
+          // Create new QR code
+          new QRCode(qrDiv, {
+            text: url,
+            width: 220,
+            height: 220,
+            colorDark: "#3a2a1f",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H,
+          });
+
+          // Update display text
+          document.getElementById("urlText").innerText = url;
+
+          // Show success message
+          const msgDiv = document.getElementById("formMessage");
+          if (msgDiv) {
+            msgDiv.innerHTML = "✓ QR Code generated successfully!";
+            msgDiv.className = "message-area success";
+            setTimeout(() => {
+              if (msgDiv.innerHTML === "✓ QR Code generated successfully!") {
+                msgDiv.innerHTML = "";
+              }
+            }, 2000);
+          }
+
+          return true;
+        } catch (e) {
+          console.error("QR generation error:", e);
+          qrDiv.innerHTML =
+            '<p style="color:red;padding:20px;">Error generating QR code. Please check the URL.</p>';
+          return false;
+        }
+      }
+
+      // Update QR code with new URL
+      function updateQRCode() {
+        let newUrl = document.getElementById("customUrlInput").value.trim();
+
+        if (!newUrl) {
+          const msgDiv = document.getElementById("formMessage");
+          msgDiv.innerHTML =
+            "❌ Please enter a URL (e.g., https://yourstore.com)";
+          msgDiv.className = "message-area error";
+          return;
+        }
+
+        // Add https:// if missing and not starting with http
+        if (!newUrl.startsWith("http://") && !newUrl.startsWith("https://")) {
+          newUrl = "https://" + newUrl;
+        }
+
+        currentQRUrl = newUrl;
+        const success = generateQRCode(currentQRUrl);
+
+        if (success) {
+          // Also store in localStorage for persistence
+          localStorage.setItem("lastQRUrl", currentQRUrl);
+        }
+      }
+
+      // Download QR code as PNG
+      function downloadQRCode() {
+        const qrDiv = document.getElementById("qrcode");
+        const img = qrDiv.querySelector("img");
+
+        if (img) {
+          try {
+            // Create a temporary link to download the image
+            const link = document.createElement("a");
+            const timestamp = new Date()
+              .toISOString()
+              .slice(0, 19)
+              .replace(/:/g, "-");
+            link.download = `dryfruit_qr_${timestamp}.png`;
+            link.href = img.src;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Show success message
+            const msgDiv = document.getElementById("formMessage");
+            msgDiv.innerHTML = "✓ QR Code downloaded successfully!";
+            msgDiv.className = "message-area success";
+            setTimeout(() => {
+              if (msgDiv.innerHTML === "✓ QR Code downloaded successfully!") {
+                msgDiv.innerHTML = "";
+              }
+            }, 2000);
+          } catch (e) {
+            alert("Error downloading QR code. Please try again.");
+          }
+        } else {
+          // Fallback: try to get canvas element
+          const canvas = qrDiv.querySelector("canvas");
+          if (canvas) {
+            const link = document.createElement("a");
+            link.download = "dryfruit_qr.png";
+            link.href = canvas.toDataURL();
+            link.click();
+          } else {
+            alert("Please generate a QR code first before downloading.");
+          }
+        }
+      }
+
+      // Order form functions
+      function renderForm() {
         const container = document.getElementById("dynamicProductList");
         if (!container) return;
 
-        // Build product rows
         let html = "";
         for (let i = 0; i < PRODUCTS.length; i++) {
           const p = PRODUCTS[i];
-          const qty = quantities[i];
-          const subtotal = p.price * qty;
           html += `
-                <div class="product-row" data-idx="${i}">
+                <div class="product-row">
                     <div class="product-info">
-                        <span class="product-icon">${p.icon}</span>
-                        <div>
-                            <div class="product-name">${p.name}</div>
-                            <div class="product-price">${formatPrice(p.price)} / ${p.unit}</div>
-                        </div>
+                        <span style="font-size: 1.5rem;">${p.icon}</span>
+                        <span><strong>${p.name}</strong><br><small>₹${p.price}/kg</small></span>
                     </div>
                     <div class="quantity-control">
-                        <button class="qty-decr" data-idx="${i}">−</button>
-                        <span id="qty-val-${i}">${qty}</span>
-                        <button class="qty-incr" data-idx="${i}">+</button>
+                        <button class="qty-btn" data-idx="${i}" data-delta="-1">−</button>
+                        <span id="qty-${i}" style="min-width: 30px; text-align: center;">${quantities[i]}</span>
+                        <button class="qty-btn" data-idx="${i}" data-delta="1">+</button>
                     </div>
-                    <div class="product-subtotal" id="subtotal-${i}">
-                        ${qty > 0 ? formatPrice(subtotal) : "—"}
-                    </div>
+                    <span id="subtotal-${i}" style="min-width: 70px; text-align: right; font-weight: 500;">
+                        ${quantities[i] > 0 ? "₹" + p.price * quantities[i] : "—"}
+                    </span>
                 </div>
             `;
         }
         container.innerHTML = html;
 
-        // Attach event listeners dynamically
-        document.querySelectorAll(".qty-decr").forEach((btn) => {
+        // Attach event listeners to quantity buttons
+        document.querySelectorAll(".qty-btn").forEach((btn) => {
           btn.addEventListener("click", (e) => {
             const idx = parseInt(btn.getAttribute("data-idx"));
-            if (quantities[idx] > 0) {
-              quantities[idx]--;
-              refreshAll();
-            }
-          });
-        });
-        document.querySelectorAll(".qty-incr").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            const idx = parseInt(btn.getAttribute("data-idx"));
-            quantities[idx]++;
-            refreshAll();
+            const delta = parseInt(btn.getAttribute("data-delta"));
+            updateQty(idx, delta);
           });
         });
 
-        renderSummary();
+        updateSummary();
       }
 
-      function renderSummary() {
-        let subtotalAmount = 0;
-        let itemsList = [];
+      function updateQty(idx, delta) {
+        quantities[idx] = Math.max(0, quantities[idx] + delta);
+        document.getElementById(`qty-${idx}`).innerText = quantities[idx];
+        const p = PRODUCTS[idx];
+        const subtotalSpan = document.getElementById(`subtotal-${idx}`);
+        if (subtotalSpan) {
+          subtotalSpan.innerText =
+            quantities[idx] > 0 ? "₹" + p.price * quantities[idx] : "—";
+        }
+        updateSummary();
+      }
+
+      function updateSummary() {
+        let total = 0;
+        let items = [];
         for (let i = 0; i < PRODUCTS.length; i++) {
-          const qty = quantities[i];
-          if (qty > 0) {
-            const product = PRODUCTS[i];
-            const lineTotal = product.price * qty;
-            subtotalAmount += lineTotal;
-            itemsList.push(
-              `${qty} ${product.name} (${formatPrice(lineTotal)})`,
-            );
+          if (quantities[i] > 0) {
+            const itemTotal = PRODUCTS[i].price * quantities[i];
+            total += itemTotal;
+            items.push(`${quantities[i]}kg ${PRODUCTS[i].name}`);
           }
         }
-        const total = subtotalAmount;
+
         const summaryDiv = document.getElementById("summaryPanel");
         if (summaryDiv) {
           summaryDiv.innerHTML = `
-                <div class="summary-line"><strong>🛒 Your items:</strong> <span>${itemsList.length ? itemsList.join(", ") : "No items selected"}</span></div>
-                <div class="summary-line">Subtotal: ${formatPrice(subtotalAmount)}</div>
-                <div class="summary-line">Delivery & tax: Calculated by seller</div>
-                <div class="total-price">Total Amount: ${formatPrice(total)}</div>
+                <div class="order-summary">
+                    <strong>📋 Order Summary</strong><br>
+                    ${items.length ? items.join(", ") : "No items selected"}<br>
+                    <div class="total-price">Total: ₹${total}</div>
+                </div>
             `;
         }
-        // also update each subtotal display inline
-        for (let i = 0; i < PRODUCTS.length; i++) {
-          const subtotalSpan = document.getElementById(`subtotal-${i}`);
-          if (subtotalSpan) {
-            const qty = quantities[i];
-            const subtotal = PRODUCTS[i].price * qty;
-            subtotalSpan.innerText = qty > 0 ? formatPrice(subtotal) : "—";
-          }
-          const qtySpan = document.getElementById(`qty-val-${i}`);
-          if (qtySpan) qtySpan.innerText = quantities[i];
-        }
       }
 
-      function refreshAll() {
-        renderOrderForm(); // re-renders but preserves quantities
-      }
-
-      // Collect order data & send simulation (in real world would POST to server, here we show summary and store in localStorage mock)
       function submitOrder() {
-        const buyerName = document.getElementById("buyerName")?.value.trim();
-        const buyerPhone = document.getElementById("buyerPhone")?.value.trim();
-        const buyerAddress = document
-          .getElementById("buyerAddress")
-          ?.value.trim();
-        const messageDiv = document.getElementById("formMessage");
+        const name = document.getElementById("buyerName").value.trim();
+        const phone = document.getElementById("buyerPhone").value.trim();
+        const msgDiv = document.getElementById("formMessage");
 
-        if (!buyerName) {
-          messageDiv.innerHTML =
-            '<i class="fas fa-exclamation-circle"></i> Please enter your name.';
-          messageDiv.className = "message-area error";
-          return;
-        }
-        if (!buyerPhone) {
-          messageDiv.innerHTML =
-            '<i class="fas fa-exclamation-circle"></i> Phone number is required for order confirmation.';
-          messageDiv.className = "message-area error";
+        if (!name || !phone) {
+          msgDiv.innerHTML = "❌ Please enter name and phone number";
+          msgDiv.className = "message-area error";
           return;
         }
 
-        // Collect ordered items
-        const orderedItems = [];
-        let totalQuantity = 0;
-        let grandTotal = 0;
+        let orderItems = [];
+        let total = 0;
         for (let i = 0; i < PRODUCTS.length; i++) {
-          const qty = quantities[i];
-          if (qty > 0) {
-            const prod = PRODUCTS[i];
-            const itemTotal = prod.price * qty;
-            orderedItems.push({
-              productName: prod.name,
-              quantity: qty,
-              unitPrice: prod.price,
-              totalPrice: itemTotal,
-            });
-            totalQuantity += qty;
-            grandTotal += itemTotal;
+          if (quantities[i] > 0) {
+            orderItems.push(`${quantities[i]}kg ${PRODUCTS[i].name}`);
+            total += PRODUCTS[i].price * quantities[i];
           }
         }
 
-        if (orderedItems.length === 0) {
-          messageDiv.innerHTML =
-            '<i class="fas fa-shopping-cart"></i> Please add at least one product to order.';
-          messageDiv.className = "message-area error";
+        if (orderItems.length === 0) {
+          msgDiv.innerHTML = "❌ Please add at least one product";
+          msgDiv.className = "message-area error";
           return;
         }
 
-        // Build order object
         const order = {
-          orderId: "ORD" + Date.now() + Math.floor(Math.random() * 1000),
+          id: Date.now(),
+          name: name,
+          phone: phone,
+          address: document.getElementById("buyerAddress").value.trim(),
+          items: orderItems,
+          total: total,
           date: new Date().toLocaleString(),
-          buyer: {
-            name: buyerName,
-            phone: buyerPhone,
-            address: buyerAddress || "Not provided",
-          },
-          items: orderedItems,
-          totalQuantity: totalQuantity,
-          totalAmount: grandTotal,
-          currency: "INR",
-          status: "Pending",
         };
 
-        // STORAGE: For demo purposes, store in localStorage as "pendingOrders" (simulate backend)
-        let existingOrders = [];
-        try {
-          const stored = localStorage.getItem("dryfruit_orders");
-          if (stored) existingOrders = JSON.parse(stored);
-        } catch (e) {
-          existingOrders = [];
-        }
-        existingOrders.unshift(order); // latest first
-        localStorage.setItem("dryfruit_orders", JSON.stringify(existingOrders));
+        // Save to localStorage
+        let orders = JSON.parse(
+          localStorage.getItem("dryfruit_orders") || "[]",
+        );
+        orders.unshift(order);
+        localStorage.setItem("dryfruit_orders", JSON.stringify(orders));
 
-        // Show success message with order summary
-        let itemsHtml = orderedItems
-          .map((it) => `${it.quantity} x ${it.productName} = ₹${it.totalPrice}`)
-          .join("<br>");
-        messageDiv.innerHTML = `<i class="fas fa-check-circle"></i> Order placed successfully! Order ID: ${order.orderId}<br>
-                               <small>${orderedItems.length} product(s) | Total: ₹${grandTotal}<br>We'll contact you at ${buyerPhone} soon.</small>`;
-        messageDiv.className = "message-area success";
+        msgDiv.innerHTML = `✅ Order placed successfully! Total: ₹${total}. We'll contact you at ${phone}.`;
+        msgDiv.className = "message-area success";
 
-        // Reset quantities and clear after 3 seconds? Clear form but keep buyer? Option: reset quantities.
-        // We'll reset product quantities to zero but keep buyer fields as is optionally.
-        for (let i = 0; i < quantities.length; i++) quantities[i] = 0;
-        refreshAll(); // resets frontend quantities and subtotals
+        // Reset form
+        quantities.fill(0);
+        renderForm();
+        document.getElementById("buyerName").value = "";
+        document.getElementById("buyerPhone").value = "";
+        document.getElementById("buyerAddress").value = "";
 
-        // Also optional: clear message after 5 sec but better keep until next action
         setTimeout(() => {
-          if (
-            document
-              .getElementById("formMessage")
-              ?.innerHTML.includes("Order placed")
-          ) {
-            // but do not remove instantly, user can see. But we leave it.
+          if (msgDiv.innerHTML.includes("Order placed successfully")) {
+            msgDiv.innerHTML = "";
           }
         }, 5000);
-
-        // Scroll to order summary to see success
-        document
-          .getElementById("orderPanel")
-          ?.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
 
-      // ------------------ QR Code Generation ------------------
-      // The QR will point to the exact same page URL (the current deployed page). Since the SPA is already the full app,
-      // scanning QR will reload/load this webpage and directly show the order form.
-      // For offline or local testing, we'll use dynamic current URL + an optional hash fragment #order to highlight.
-      // That ensures the user opens the same order collection SPA.
-      let currentPageUrl = window.location.href.split("#")[0]; // remove any fragment
-      // ensure url is clean
-      const cleanUrl = currentPageUrl;
-      let qrInstance = null;
-
-      function generateQRCode() {
-        const qrDiv = document.getElementById("qrcode");
-        if (!qrDiv) return;
-        // clear previous content
-        qrDiv.innerHTML = "";
-        const urlToEncode = cleanUrl;
-        document.getElementById("qrUrlDisplay").innerText = urlToEncode;
-        // Use QRCode.js
-        try {
-          qrInstance = new QRCode(qrDiv, {
-            text: urlToEncode,
-            width: 220,
-            height: 220,
-            colorDark: "#3a2a1f",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.M,
-          });
-        } catch (err) {
-          console.warn("QR generation error", err);
-          qrDiv.innerHTML = `<div style="padding:20px;background:#eee;">⚠️ QR Code could not be generated. But the link is: ${urlToEncode}</div>`;
-        }
-      }
-
-      function downloadQR() {
-        const qrContainer = document.getElementById("qrcode");
-        if (!qrContainer) return;
-        let imgElement = qrContainer.querySelector("img");
-        if (!imgElement) {
-          alert("QR image not ready. Please wait or refresh.");
-          return;
-        }
-        const canvas = document.createElement("canvas");
-        const img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.src = imgElement.src;
-        img.onload = () => {
-          canvas.width = img.width;
-          canvas.height = img.height;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0, img.width, img.height);
-          const link = document.createElement("a");
-          link.download = "dryfruit_seller_qr.png";
-          link.href = canvas.toDataURL("image/png");
-          link.click();
-        };
-        img.onerror = () => {
-          alert("Error generating QR image for download. Try again.");
-        };
-        if (img.complete) img.onload();
-      }
-
-      // Check for URL parameter? Not needed but ensures the page behaves as web app.
-      // Also sets initial data.
+      // Initialize the app
       function init() {
-        renderOrderForm();
-        generateQRCode();
-        // attach submit button
-        const submitBtn = document.getElementById("submitOrderBtn");
-        if (submitBtn) submitBtn.addEventListener("click", submitOrder);
-        const downloadBtn = document.getElementById("downloadQRBtn");
-        if (downloadBtn) downloadBtn.addEventListener("click", downloadQR);
-        // Optional: Pre-fill any demo data (none)
-        // Add slight handling to reset message if user interacts with quantity
-        const resetMsgOnChange = () => {
-          const msgDiv = document.getElementById("formMessage");
-          if (msgDiv && msgDiv.classList.contains("success")) {
-            setTimeout(() => {
-              if (msgDiv.innerHTML.includes("Order placed")) {
-                // fade out after new action maybe
-              }
-            }, 200);
-          }
-        };
-        document.addEventListener("click", (e) => {
-          if (e.target.closest(".qty-decr") || e.target.closest(".qty-incr")) {
-            const msgDiv = document.getElementById("formMessage");
-            if (msgDiv) msgDiv.innerHTML = "";
-          }
-        });
+        // Set default URL in input field
+        const defaultUrl = window.location.href.split("#")[0];
+        document.getElementById("customUrlInput").value = defaultUrl;
+
+        // Restore last used URL from localStorage if exists
+        const savedUrl = localStorage.getItem("lastQRUrl");
+        if (savedUrl) {
+          document.getElementById("customUrlInput").value = savedUrl;
+          currentQRUrl = savedUrl;
+        }
+
+        // Generate initial QR code
+        generateQRCode(currentQRUrl);
+
+        // Setup event listeners
+        document
+          .getElementById("updateUrlBtn")
+          .addEventListener("click", updateQRCode);
+        document
+          .getElementById("downloadQRBtn")
+          .addEventListener("click", downloadQRCode);
+        document
+          .getElementById("submitOrderBtn")
+          .addEventListener("click", submitOrder);
+
+        // Enter key support in URL input
+        document
+          .getElementById("customUrlInput")
+          .addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+              updateQRCode();
+            }
+          });
+
+        // Render product form
+        renderForm();
       }
 
-      // Also if page loaded with hash, ensure view is focused.
-      window.onload = init;
+      // Start the app when page loads
+      window.addEventListener("DOMContentLoaded", init);
     </script>
   </body>
 </html>
