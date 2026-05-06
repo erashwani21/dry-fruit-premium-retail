@@ -60,6 +60,7 @@
       }
 
       .qr-panel {
+        display: none;
         flex: 1;
         min-width: 300px;
         background: #fefaf0;
@@ -238,11 +239,12 @@
         border-top: 2px dashed #dccfba;
         padding-top: 12px;
         margin-top: 8px;
+        text-align: right;
       }
 
       .buyer-info {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 15px;
         margin: 20px 0;
       }
@@ -315,7 +317,7 @@
       </div>
       <div class="two-columns">
         <div class="qr-panel">
-          <h2><i class="fas fa-qrcode"></i> QR Code Generator</h2>
+          <h2><i class="fas fa-qrcode"></i> ^rator</h2>
 
           <div class="url-input-group">
             <label><i class="fas fa-link"></i> QR Code Destination URL</label>
@@ -405,7 +407,8 @@
 
           // Show success message
           const msgDiv = document.getElementById("formMessage");
-          if (msgDiv) {
+          if (false) {
+          // if (msgDiv) {
             msgDiv.innerHTML = "✓ QR Code generated successfully!";
             msgDiv.className = "message-area success";
             setTimeout(() => {
@@ -426,7 +429,7 @@
 
       // Update QR code with new URL
       function updateQRCode() {
-        let newUrl = document.getElementById("customUrlInput").value.trim();
+        let newUrl = document.getElementById("customUrlInput")?.value?.trim();
 
         if (!newUrl) {
           const msgDiv = document.getElementById("formMessage");
