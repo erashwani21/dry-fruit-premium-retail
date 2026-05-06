@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=yes"
     />
-    <title>Dry Fruits QR Order System</title>
+    <title>Dry Fruits QR Order System - WhatsApp Orders</title>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <link
       rel="stylesheet"
@@ -39,8 +39,8 @@
       }
 
       .header {
-        background: #5a3e2b;
-        color: #fff2e0;
+        background: #25d366;
+        color: white;
         padding: 1.6rem 2rem;
         text-align: center;
       }
@@ -51,7 +51,6 @@
 
       .header h1 i {
         margin-right: 12px;
-        color: #f9b23f;
       }
 
       .two-columns {
@@ -74,6 +73,53 @@
         margin-bottom: 1rem;
       }
 
+      .whatsapp-config {
+        background: #dcf8c5;
+        padding: 1rem;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+        text-align: left;
+        border: 1px solid #25d366;
+      }
+
+      .whatsapp-config label {
+        display: block;
+        font-weight: 600;
+        color: #075e54;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+      }
+
+      .whatsapp-config input {
+        width: 100%;
+        padding: 10px 14px;
+        border: 2px solid #25d366;
+        border-radius: 40px;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+
+      .whatsapp-config input:focus {
+        outline: none;
+        border-color: #128c7e;
+      }
+
+      .save-wa-btn {
+        background: #25d366;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 40px;
+        cursor: pointer;
+        font-weight: 600;
+        width: 100%;
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      .save-wa-btn:hover {
+        background: #128c7e;
+      }
+
       .url-input-group {
         background: white;
         padding: 1rem;
@@ -88,7 +134,6 @@
         font-weight: 600;
         color: #5a3e2b;
         margin-bottom: 8px;
-        font-size: 0.9rem;
       }
 
       .url-input-group input {
@@ -100,11 +145,6 @@
         margin-bottom: 10px;
       }
 
-      .url-input-group input:focus {
-        outline: none;
-        border-color: #e6a017;
-      }
-
       .update-url-btn {
         background: #e6a017;
         border: none;
@@ -114,11 +154,6 @@
         font-weight: 600;
         width: 100%;
         color: white;
-        font-size: 1rem;
-      }
-
-      .update-url-btn:hover {
-        background: #ca8b12;
       }
 
       #qrcode {
@@ -138,15 +173,6 @@
         height: auto;
       }
 
-      .current-url {
-        background: #e9e2d3;
-        padding: 10px;
-        border-radius: 40px;
-        font-size: 0.75rem;
-        word-break: break-all;
-        margin: 15px 0;
-      }
-
       .download-btn {
         background: #7c5f42;
         border: none;
@@ -158,12 +184,6 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        font-size: 1rem;
-        font-weight: 500;
-      }
-
-      .download-btn:hover {
-        background: #5a3e2b;
       }
 
       .order-panel {
@@ -176,7 +196,7 @@
       .order-panel h2 {
         font-size: 1.8rem;
         color: #4a3724;
-        border-left: 6px solid #e6a017;
+        border-left: 6px solid #25d366;
         padding-left: 18px;
         margin-bottom: 1.5rem;
       }
@@ -218,11 +238,6 @@
         border-radius: 50%;
         cursor: pointer;
         font-weight: bold;
-        transition: 0.1s;
-      }
-
-      .quantity-control button:active {
-        background: #cfbc9f;
       }
 
       .order-summary {
@@ -239,7 +254,6 @@
         border-top: 2px dashed #dccfba;
         padding-top: 12px;
         margin-top: 8px;
-        text-align: right;
       }
 
       .buyer-info {
@@ -259,7 +273,7 @@
       }
 
       .submit-order {
-        background: #e6a017;
+        background: #25d366;
         border: none;
         padding: 14px 24px;
         font-size: 1.1rem;
@@ -267,11 +281,12 @@
         border-radius: 60px;
         cursor: pointer;
         width: 100%;
+        color: white;
         transition: 0.2s;
       }
 
       .submit-order:hover {
-        background: #ca8b12;
+        background: #128c7e;
         transform: translateY(-1px);
       }
 
@@ -293,9 +308,18 @@
         color: #bc4a2c;
       }
 
-      .info-message {
+      .loading {
         background: #e3f2fd;
         color: #1976d2;
+      }
+
+      .wa-status {
+        font-size: 0.85rem;
+        margin-top: 10px;
+        padding: 8px;
+        background: #dcf8c5;
+        border-radius: 20px;
+        color: #075e54;
       }
 
       @media (max-width: 850px) {
@@ -312,12 +336,28 @@
   <body>
     <div class="app-container">
       <div class="header">
-        <h1><i class="fas fa-seedling"></i> Premium Dry Fruits Store</h1>
-        <p>Generate QR Code - Customers scan to place orders</p>
+        <h1><i class="fab fa-whatsapp"></i> Premium Dry Fruits Store</h1>
+        <p>QR Code Order System - Orders sent to WhatsApp</p>
       </div>
       <div class="two-columns">
         <div class="qr-panel">
-          <h2><i class="fas fa-qrcode"></i> ^rator</h2>
+          <h2><i class="fas fa-qrcode"></i> QR Code Setup</h2>
+
+          <!-- WhatsApp Configuration -->
+          <div class="whatsapp-config">
+            <label><i class="fab fa-whatsapp"></i> Your WhatsApp Number</label>
+            <input
+              type="tel"
+              id="whatsappNumber"
+              placeholder="+91 98765 43210"
+            />
+            <button class="save-wa-btn" id="saveWABtn">
+              <i class="fab fa-whatsapp"></i> Save WhatsApp Number
+            </button>
+            <div class="wa-status" id="waStatus">
+              <i class="fas fa-info-circle"></i> Orders will be sent to WhatsApp
+            </div>
+          </div>
 
           <div class="url-input-group">
             <label><i class="fas fa-link"></i> QR Code Destination URL</label>
@@ -327,43 +367,50 @@
               placeholder="https://your-website.com/order-page"
             />
             <button class="update-url-btn" id="updateUrlBtn">
-              <i class="fas fa-sync-alt"></i> Generate / Update QR Code
+              <i class="fas fa-sync-alt"></i> Generate QR Code
             </button>
-            <div class="current-url">
-              <i class="fas fa-info-circle"></i>
-              <strong>Current QR points to:</strong><br />
-              <span id="urlText" style="word-break: break-all">Loading...</span>
+            <div
+              class="current-url"
+              style="margin-top: 10px; font-size: 0.75rem"
+            >
+              <i class="fas fa-info-circle"></i> Points to:
+              <span id="urlText">Loading...</span>
             </div>
           </div>
 
           <div id="qrcode"></div>
 
           <button class="download-btn" id="downloadQRBtn">
-            <i class="fas fa-download"></i> Download QR Code as PNG
+            <i class="fas fa-download"></i> Download QR Code
           </button>
-
-          <p style="margin-top: 20px; font-size: 0.8rem; color: #a18764">
-            <i class="fas fa-lightbulb"></i> Tip: Enter any URL, click
-            "Generate", then download the QR code. Print and share with
-            customers!
-          </p>
         </div>
 
         <div class="order-panel">
-          <h2><i class="fas fa-shopping-basket"></i> Customer Order Form</h2>
+          <h2><i class="fas fa-shopping-basket"></i> Place Your Order</h2>
           <div id="dynamicProductList"></div>
           <div id="summaryPanel"></div>
+
           <div class="buyer-info">
             <input type="text" id="buyerName" placeholder="Full Name *" />
-            <input type="tel" id="buyerPhone" placeholder="Phone Number *" />
+            <input
+              type="tel"
+              id="buyerPhone"
+              placeholder="Your Phone Number *"
+            />
             <textarea
               id="buyerAddress"
-              rows="1"
-              placeholder="Delivery Address (Optional)"
+              rows="2"
+              placeholder="Delivery Address (Full Address with Pin Code) *"
+            ></textarea>
+            <textarea
+              id="specialInstructions"
+              rows="2"
+              placeholder="Special Instructions / Delivery Time (Optional)"
             ></textarea>
           </div>
+
           <button class="submit-order" id="submitOrderBtn">
-            <i class="fas fa-paper-plane"></i> Submit Order
+            <i class="fab fa-whatsapp"></i> Place Order & Send to WhatsApp
           </button>
           <div id="formMessage" class="message-area"></div>
         </div>
@@ -371,28 +418,40 @@
     </div>
 
     <script>
+      // PRODUCT CATALOG
       const PRODUCTS = [
-        { id: 1, name: "Almonds (Badam)", icon: "🥜", price: 850 },
-        { id: 2, name: "Cashews (Kaju)", icon: "🍬", price: 950 },
-        { id: 3, name: "Walnuts (Akhrot)", icon: "🌰", price: 720 },
-        { id: 4, name: "Pistachios (Pista)", icon: "💚", price: 1250 },
-        { id: 5, name: "Raisins (Kishmish)", icon: "🍇", price: 340 },
-        { id: 6, name: "Dates (Khajoor)", icon: "🌴", price: 490 },
+        { id: 1, name: "Almonds (Badam)", icon: "🥜", price: 850, unit: "kg" },
+        { id: 2, name: "Cashews (Kaju)", icon: "🍬", price: 950, unit: "kg" },
+        { id: 3, name: "Walnuts (Akhrot)", icon: "🌰", price: 720, unit: "kg" },
+        {
+          id: 4,
+          name: "Pistachios (Pista)",
+          icon: "💚",
+          price: 1250,
+          unit: "kg",
+        },
+        {
+          id: 5,
+          name: "Raisins (Kishmish)",
+          icon: "🍇",
+          price: 340,
+          unit: "kg",
+        },
+        { id: 6, name: "Dates (Khajoor)", icon: "🌴", price: 490, unit: "kg" },
+        { id: 7, name: "Dried Apricots", icon: "🍑", price: 680, unit: "kg" },
+        { id: 8, name: "Fig (Anjeer)", icon: "🍐", price: 780, unit: "kg" },
       ];
 
       let quantities = new Array(PRODUCTS.length).fill(0);
       let currentQRUrl = window.location.href.split("#")[0];
 
-      // Function to generate QR code
+      // Generate QR code
       function generateQRCode(url) {
         const qrDiv = document.getElementById("qrcode");
         if (!qrDiv) return;
-
-        // Clear previous QR code
         qrDiv.innerHTML = "";
 
         try {
-          // Create new QR code
           new QRCode(qrDiv, {
             text: url,
             width: 220,
@@ -401,104 +460,230 @@
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H,
           });
-
-          // Update display text
           document.getElementById("urlText").innerText = url;
-
-          // Show success message
-          const msgDiv = document.getElementById("formMessage");
-          if (false) {
-          // if (msgDiv) {
-            msgDiv.innerHTML = "✓ QR Code generated successfully!";
-            msgDiv.className = "message-area success";
-            setTimeout(() => {
-              if (msgDiv.innerHTML === "✓ QR Code generated successfully!") {
-                msgDiv.innerHTML = "";
-              }
-            }, 2000);
-          }
-
           return true;
         } catch (e) {
-          console.error("QR generation error:", e);
           qrDiv.innerHTML =
-            '<p style="color:red;padding:20px;">Error generating QR code. Please check the URL.</p>';
+            '<p style="color:red;">Error generating QR code</p>';
           return false;
         }
       }
 
-      // Update QR code with new URL
+      // Update QR code
       function updateQRCode() {
-        let newUrl = document.getElementById("customUrlInput")?.value?.trim();
-
+        let newUrl = document.getElementById("customUrlInput").value.trim();
         if (!newUrl) {
-          const msgDiv = document.getElementById("formMessage");
-          msgDiv.innerHTML =
-            "❌ Please enter a URL (e.g., https://yourstore.com)";
-          msgDiv.className = "message-area error";
+          showMessage("Please enter a URL", "error");
           return;
         }
-
-        // Add https:// if missing and not starting with http
         if (!newUrl.startsWith("http://") && !newUrl.startsWith("https://")) {
           newUrl = "https://" + newUrl;
         }
-
         currentQRUrl = newUrl;
-        const success = generateQRCode(currentQRUrl);
-
-        if (success) {
-          // Also store in localStorage for persistence
-          localStorage.setItem("lastQRUrl", currentQRUrl);
-        }
+        generateQRCode(currentQRUrl);
+        localStorage.setItem("lastQRUrl", currentQRUrl);
+        showMessage("QR Code updated successfully!", "success");
       }
 
-      // Download QR code as PNG
+      // Download QR code
       function downloadQRCode() {
         const qrDiv = document.getElementById("qrcode");
         const img = qrDiv.querySelector("img");
-
         if (img) {
-          try {
-            // Create a temporary link to download the image
-            const link = document.createElement("a");
-            const timestamp = new Date()
-              .toISOString()
-              .slice(0, 19)
-              .replace(/:/g, "-");
-            link.download = `dryfruit_qr_${timestamp}.png`;
-            link.href = img.src;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Show success message
-            const msgDiv = document.getElementById("formMessage");
-            msgDiv.innerHTML = "✓ QR Code downloaded successfully!";
-            msgDiv.className = "message-area success";
-            setTimeout(() => {
-              if (msgDiv.innerHTML === "✓ QR Code downloaded successfully!") {
-                msgDiv.innerHTML = "";
-              }
-            }, 2000);
-          } catch (e) {
-            alert("Error downloading QR code. Please try again.");
-          }
+          const link = document.createElement("a");
+          link.download = `dryfruit_qr_${Date.now()}.png`;
+          link.href = img.src;
+          link.click();
+          showMessage("QR Code downloaded!", "success");
         } else {
-          // Fallback: try to get canvas element
-          const canvas = qrDiv.querySelector("canvas");
-          if (canvas) {
-            const link = document.createElement("a");
-            link.download = "dryfruit_qr.png";
-            link.href = canvas.toDataURL();
-            link.click();
-          } else {
-            alert("Please generate a QR code first before downloading.");
-          }
+          showMessage("Generate QR code first", "error");
         }
       }
 
-      // Order form functions
+      // Format WhatsApp message
+      function formatWhatsAppMessage(orderDetails, customerPhone) {
+        const itemsEmoji = orderDetails.items
+          .map((item) => `✅ ${item}`)
+          .join("\n");
+
+        const message = `🍫 *NEW DRY FRUIT ORDER RECEIVED!* 🍫
+━━━━━━━━━━━━━━━━━━━━━
+*🆔 ORDER ID:* ${orderDetails.orderId}
+*📅 DATE:* ${orderDetails.orderDate}
+━━━━━━━━━━━━━━━━━━━━━
+*👤 CUSTOMER DETAILS*
+━━━━━━━━━━━━━━━━━━━━━
+*Name:* ${orderDetails.customerName}
+*Phone:* ${customerPhone}
+*Address:* ${orderDetails.customerAddress}
+━━━━━━━━━━━━━━━━━━━━━
+*🛒 ORDER ITEMS*
+━━━━━━━━━━━━━━━━━━━━━
+${itemsEmoji}
+━━━━━━━━━━━━━━━━━━━━━
+*💰 TOTAL AMOUNT:* ${orderDetails.totalAmount}
+━━━━━━━━━━━━━━━━━━━━━
+*📝 SPECIAL INSTRUCTIONS:*
+${orderDetails.specialInstructions || "None"}
+━━━━━━━━━━━━━━━━━━━━━
+*⏰ Please confirm this order with the customer.*
+*💬 Reply to this message to connect!*`;
+
+        return encodeURIComponent(message);
+      }
+
+      // Send to WhatsApp
+      function sendToWhatsApp(whatsappNumber, message) {
+        // Clean the number: remove spaces, dashes, plus sign if present
+        let cleanNumber = whatsappNumber.replace(/\s/g, "").replace(/-/g, "");
+        if (!cleanNumber.startsWith("+")) {
+          // Add country code if not present (default India +91)
+          if (cleanNumber.startsWith("91") && cleanNumber.length === 12) {
+            cleanNumber = "+" + cleanNumber;
+          } else if (cleanNumber.length === 10) {
+            cleanNumber = "+91" + cleanNumber;
+          } else {
+            cleanNumber = "+" + cleanNumber;
+          }
+        }
+
+        // Create WhatsApp URL
+        const waUrl = `https://wa.me/${cleanNumber}?text=${message}`;
+        window.open(waUrl, "_blank");
+        return true;
+      }
+
+      // Submit order and send WhatsApp
+      async function submitOrder() {
+        const buyerName = document.getElementById("buyerName").value.trim();
+        const buyerPhone = document.getElementById("buyerPhone").value.trim();
+        const buyerAddress = document
+          .getElementById("buyerAddress")
+          .value.trim();
+        const specialInstructions = document
+          .getElementById("specialInstructions")
+          .value.trim();
+        const sellerWhatsApp = "+918076072002"; // Default seller number (can be changed in QR panel)
+        const msgDiv = document.getElementById("formMessage");
+
+        // Validation
+        if (!buyerName) {
+          showMessage("❌ Please enter your full name", "error");
+          return;
+        }
+        if (!buyerPhone) {
+          showMessage("❌ Please enter your phone number", "error");
+          return;
+        }
+        if (!buyerAddress) {
+          showMessage("❌ Please enter your delivery address", "error");
+          return;
+        }
+        // if (!sellerWhatsApp) {
+        //   showMessage(
+        //     "❌ Seller WhatsApp number not configured. Please add it in the QR panel.",
+        //     "error",
+        //   );
+        //   return;
+        // }
+
+        // Collect order items
+        let orderItems = [];
+        let total = 0;
+        for (let i = 0; i < PRODUCTS.length; i++) {
+          if (quantities[i] > 0) {
+            const itemTotal = PRODUCTS[i].price * quantities[i];
+            total += itemTotal;
+            orderItems.push(
+              `${quantities[i]} ${PRODUCTS[i].unit} ${PRODUCTS[i].name} - ₹${itemTotal}`,
+            );
+          }
+        }
+
+        if (orderItems.length === 0) {
+          showMessage("❌ Please add at least one product to order", "error");
+          return;
+        }
+
+        // Create order object
+        const orderId = "WA" + Date.now() + Math.floor(Math.random() * 1000);
+        const orderDate = new Date().toLocaleString("en-IN", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const orderDetails = {
+          orderId: orderId,
+          orderDate: orderDate,
+          customerName: buyerName,
+          customerAddress: buyerAddress,
+          items: orderItems,
+          totalAmount: `₹${total}`,
+          specialInstructions: specialInstructions || "None",
+        };
+
+        // Show loading message
+        showMessage("📤 Sending order to WhatsApp...", "loading");
+        document.getElementById("submitOrderBtn").disabled = true;
+
+        // Save to localStorage as backup
+        const order = {
+          id: orderId,
+          date: orderDate,
+          name: buyerName,
+          phone: buyerPhone,
+          address: buyerAddress,
+          items: orderItems,
+          total: total,
+          instructions: specialInstructions,
+        };
+        let orders = JSON.parse(
+          localStorage.getItem("dryfruit_orders") || "[]",
+        );
+        orders.unshift(order);
+        localStorage.setItem("dryfruit_orders", JSON.stringify(orders));
+
+        // Format and send WhatsApp message
+        const message = formatWhatsAppMessage(orderDetails, buyerPhone);
+        sendToWhatsApp(sellerWhatsApp, message);
+
+        // Success message
+        showMessage(
+          `✅ Order placed successfully! Order ID: ${orderId}<br>📱 Order details sent to seller's WhatsApp<br>📞 We'll contact you at ${buyerPhone} soon.`,
+          "success",
+        );
+
+        // Reset form
+        quantities.fill(0);
+        renderForm();
+        document.getElementById("buyerName").value = "";
+        document.getElementById("buyerPhone").value = "";
+        document.getElementById("buyerAddress").value = "";
+        document.getElementById("specialInstructions").value = "";
+        document.getElementById("submitOrderBtn").disabled = false;
+
+        // Auto clear message after 8 seconds
+        setTimeout(() => {
+          if (
+            document
+              .getElementById("formMessage")
+              .innerHTML.includes("Order placed")
+          ) {
+            document.getElementById("formMessage").innerHTML = "";
+          }
+        }, 8000);
+      }
+
+      function showMessage(msg, type) {
+        const msgDiv = document.getElementById("formMessage");
+        msgDiv.innerHTML = msg;
+        msgDiv.className = `message-area ${type}`;
+      }
+
+      // Order form rendering
       function renderForm() {
         const container = document.getElementById("dynamicProductList");
         if (!container) return;
@@ -510,14 +695,14 @@
                 <div class="product-row">
                     <div class="product-info">
                         <span style="font-size: 1.5rem;">${p.icon}</span>
-                        <span><strong>${p.name}</strong><br><small>₹${p.price}/kg</small></span>
+                        <span><strong>${p.name}</strong><br><small>₹${p.price}/${p.unit}</small></span>
                     </div>
                     <div class="quantity-control">
                         <button class="qty-btn" data-idx="${i}" data-delta="-1">−</button>
-                        <span id="qty-${i}" style="min-width: 30px; text-align: center;">${quantities[i]}</span>
+                        <span id="qty-${i}" style="min-width: 30px; text-align: center; font-weight: bold;">${quantities[i]}</span>
                         <button class="qty-btn" data-idx="${i}" data-delta="1">+</button>
                     </div>
-                    <span id="subtotal-${i}" style="min-width: 70px; text-align: right; font-weight: 500;">
+                    <span id="subtotal-${i}" style="min-width: 80px; text-align: right; font-weight: 500;">
                         ${quantities[i] > 0 ? "₹" + p.price * quantities[i] : "—"}
                     </span>
                 </div>
@@ -525,7 +710,6 @@
         }
         container.innerHTML = html;
 
-        // Attach event listeners to quantity buttons
         document.querySelectorAll(".qty-btn").forEach((btn) => {
           btn.addEventListener("click", (e) => {
             const idx = parseInt(btn.getAttribute("data-idx"));
@@ -572,83 +756,53 @@
         }
       }
 
-      function submitOrder() {
-        const name = document.getElementById("buyerName").value.trim();
-        const phone = document.getElementById("buyerPhone").value.trim();
-        const msgDiv = document.getElementById("formMessage");
-
-        if (!name || !phone) {
-          msgDiv.innerHTML = "❌ Please enter name and phone number";
-          msgDiv.className = "message-area error";
+      // Save WhatsApp number
+      function saveWhatsAppNumber() {
+        let number = document.getElementById("whatsappNumber")?.value?.trim() || "+918076072002";
+        if (!number) {
+          showMessage("Please enter your WhatsApp number", "error");
           return;
         }
 
-        let orderItems = [];
-        let total = 0;
-        for (let i = 0; i < PRODUCTS.length; i++) {
-          if (quantities[i] > 0) {
-            orderItems.push(`${quantities[i]}kg ${PRODUCTS[i].name}`);
-            total += PRODUCTS[i].price * quantities[i];
-          }
-        }
-
-        if (orderItems.length === 0) {
-          msgDiv.innerHTML = "❌ Please add at least one product";
-          msgDiv.className = "message-area error";
+        // Basic validation
+        let cleanNumber = number.replace(/\s/g, "").replace(/-/g, "");
+        if (cleanNumber.length < 10) {
+          showMessage(
+            "Please enter a valid phone number (10 digits or more)",
+            "error",
+          );
           return;
         }
 
-        const order = {
-          id: Date.now(),
-          name: name,
-          phone: phone,
-          address: document.getElementById("buyerAddress").value.trim(),
-          items: orderItems,
-          total: total,
-          date: new Date().toLocaleString(),
-        };
-
-        // Save to localStorage
-        let orders = JSON.parse(
-          localStorage.getItem("dryfruit_orders") || "[]",
-        );
-        orders.unshift(order);
-        localStorage.setItem("dryfruit_orders", JSON.stringify(orders));
-
-        msgDiv.innerHTML = `✅ Order placed successfully! Total: ₹${total}. We'll contact you at ${phone}.`;
-        msgDiv.className = "message-area success";
-
-        // Reset form
-        quantities.fill(0);
-        renderForm();
-        document.getElementById("buyerName").value = "";
-        document.getElementById("buyerPhone").value = "";
-        document.getElementById("buyerAddress").value = "";
-
-        setTimeout(() => {
-          if (msgDiv.innerHTML.includes("Order placed successfully")) {
-            msgDiv.innerHTML = "";
-          }
-        }, 5000);
+        localStorage.setItem("sellerWhatsApp", number);
+        showMessage(`✅ WhatsApp number saved: ${number}`, "success");
+        document.getElementById("waStatus").innerHTML =
+          `<i class="fab fa-whatsapp"></i> Orders will be sent to: ${number}`;
       }
 
-      // Initialize the app
-      function init() {
-        // Set default URL in input field
-        const defaultUrl = window.location.href.split("#")[0];
-        document.getElementById("customUrlInput").value = defaultUrl;
+      // Load saved data
+      function loadSavedData() {
+        const savedWhatsApp = localStorage.getItem("sellerWhatsApp");
+        if (savedWhatsApp) {
+          document.getElementById("whatsappNumber").value = savedWhatsApp;
+          document.getElementById("waStatus").innerHTML =
+            `<i class="fab fa-whatsapp"></i> Orders will be sent to: ${savedWhatsApp}`;
+        }
 
-        // Restore last used URL from localStorage if exists
         const savedUrl = localStorage.getItem("lastQRUrl");
         if (savedUrl) {
           document.getElementById("customUrlInput").value = savedUrl;
           currentQRUrl = savedUrl;
+          generateQRCode(currentQRUrl);
         }
+      }
 
-        // Generate initial QR code
+      // Initialize
+      function init() {
+        const defaultUrl = window.location.href.split("#")[0];
+        document.getElementById("customUrlInput").value = defaultUrl;
         generateQRCode(currentQRUrl);
 
-        // Setup event listeners
         document
           .getElementById("updateUrlBtn")
           .addEventListener("click", updateQRCode);
@@ -658,21 +812,20 @@
         document
           .getElementById("submitOrderBtn")
           .addEventListener("click", submitOrder);
+        document
+          .getElementById("saveWABtn")
+          .addEventListener("click", saveWhatsAppNumber);
 
-        // Enter key support in URL input
         document
           .getElementById("customUrlInput")
           .addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-              updateQRCode();
-            }
+            if (e.key === "Enter") updateQRCode();
           });
 
-        // Render product form
+        loadSavedData();
         renderForm();
       }
 
-      // Start the app when page loads
       window.addEventListener("DOMContentLoaded", init);
     </script>
   </body>
